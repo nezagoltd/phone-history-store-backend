@@ -1,0 +1,49 @@
+version: 2
+# orbs:
+#   node: circleci/node@1.1.6
+workflows:
+  version: 2
+  build:
+    jobs:
+      - test
+
+jobs:
+  test:
+    docker:
+      - image: circleci/node:13
+      - image: circleci/postgres:11
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: phonehistorystore_db_test
+          POSTGRES_PASSWORD: password
+    steps:
+      - run:
+          name: Install ltree extension for Postgres
+          command: |
+            sudo apt-get update
+            sudo apt-get install postgresql-client
+            dockerize -wait tcp://localhost:5432 -timeout 1m
+            psql -U postgres -h localhost -p 5432 -c 'create extension ltree'
+      - checkout
+      - restore_cache:
+          key: v1-deps-{{ checksum "package.json" }}
+      - run: yarn
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-deps-{{ checksum "package.json" }}
+      - run: yarn test    
+      
+  # build-and-test:
+  #   executor:
+  #     name: node/default
+  #   steps:
+  #     - checkout
+  #     - node/with-cache:
+  #         steps:
+  #           - run: yarn
+  #           - run: yarn test
+  # workflows:
+  #   build-and-test:
+  #     jobs:
+  #       - build-and-test
