@@ -1,0 +1,27 @@
+language: node_js
+
+node_js:
+  - 13.13.0
+
+services:
+  - postgresql
+
+addons:
+  code_climate:
+    repo_token:
+      secure: "ZQFbdXeyVXb+WF0C9GV4b/r3sHK4PZJjh6P9UaArzRfXn/ojYmJ1UN/g7w+SOKvzzVqtz0tedfvx7mXewvEaq1dXioN33lXNwZTNwtpDJ9f9fRP152n6D7Ca7SM/ofdn/QkY8U+vOBn90iEx/rkdKinnMEj1rZajUP39RM/M3ee4G1JoLCJqKdkd7wL9nyN/akzlqMWXhMWdHRqRKyp8kJWSBIe+zbV7Ok3LOjDSmKTn35cVRVXrFJx9unjVA8KB4MSGwiKPIfNKl59wjxrQWroUpYriI74P/nUojpazcOHhIBcz4BXUXCV1wt8yKkHdtWwPTlYVnx/Ilwl0I1F1xDw+jJRYYn/lakzf6qHqu9QCqbEH+PQyN6ygBBOytXHG22Y8nYVoKiJVQ9A33adwBPNAx74QdUS3jstLmuxLaEttc1nIEvqNimmAPBvh50y9YudnZ7GuWRQ60CxCv8ChKvdKBecHFf6TF49Pdy2mdhprQutCMMQvzdSWfD0jADXNSc9jVCg89VPfHXQHDeKMbhDgOrXzaJPXWJ/oHHjta1gmO5hxSNkHwDn5FqAdm+gNC/pe3IUWDeH7Sk2Zfdv1Ph5ZGgBYxYK0lo6ejQXTGHjTlX7Mwz8qEU/JCDVM8cLwcjIJYB6ivqberwynnrfT8aN99lbNQQy6mTC0HXASukQ="
+
+before_script:
+  - psql -c "create database phonehistorystore_db_test;" -U postgres
+
+install:
+  - yarn
+
+script:
+  - yarn test
+ 
+notification:
+  - email: false
+
+after_success:
+  - yarn run coverage
