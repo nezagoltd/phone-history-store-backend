@@ -18,7 +18,7 @@ class ValidateSignup extends Validators {
     this.res = {};
   }
 
-/**
+  /**
  * @param {object} req
  * @param {object} res
  * @param {object} next
@@ -27,21 +27,22 @@ class ValidateSignup extends Validators {
  * @description it allows to continue if the signup data are valid otherwise
  * it sends error response to user
  */
-validateSignupData = async (req, res, next) => {
-  this.res = res;
-  const userData = req.body;
-  const { error } = this.validateUserRegisterOrUpdateData({ user: userData });
-  if (!error) {
-    const existingUser = await UserService.getBy({ phoneNumber: userData.phoneNumber });
-    if (!existingUser) {
-      next();
+  validateSignupData = async (req, res, next) => {
+    this.res = res;
+    const userData = req.body;
+    const { error } = this.validateUserRegisterOrUpdateData({ user: userData });
+
+    if (!error) {
+      const existingUser = await UserService.getBy({ phoneNumber: userData.phoneNumber });
+      if (!existingUser) {
+        next();
+      } else {
+        this.errorResponse(this.res, conflict, phoneNumberAlreadyExists);
+      }
     } else {
-      this.errorResponse(this.res, conflict, phoneNumberAlreadyExists);
+      this.displayValidationErrorMessage(this, error, this.res, badRequest);
     }
-  } else {
-    this.displayValidationErrorMessage(this, error, this.res, badRequest);
-  }
-};
+  };
 }
 
 export default ValidateSignup;

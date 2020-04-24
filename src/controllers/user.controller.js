@@ -18,7 +18,7 @@ const {
 /**
  * @description this class user controller will work with req, and response to interact with db
  */
-export default class UserController extends ResponseHandlers {
+class UserController extends ResponseHandlers {
   /**
    * @constructor
    */
@@ -110,3 +110,5 @@ export default class UserController extends ResponseHandlers {
     this.successResponse(this.res, ok, accountDeletedSuccessfulyMsg, null, null);
   }
 }
+
+export default new UserController();

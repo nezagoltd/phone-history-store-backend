@@ -1,11 +1,13 @@
 /* eslint-disable no-undef */
-import chai, { expect } from 'chai';
+import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../../app';
 import customMessages from '../../helpers/customMessages';
 import statusCodes from '../../helpers/statusCodes';
 
 chai.use(chaiHttp);
+
+const { expect } = chai;
 const { ok } = statusCodes;
 const { welcomeToPhoneHistoryStore } = customMessages;
 

@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import express from 'express';
 import UserController from '../../controllers/user.controller';
 import ValidateSignup from '../../middlewares/signupValidate';
 import ValidateLogin from '../../middlewares/loginValidate';
@@ -6,7 +6,7 @@ import ValidateAuth from '../../middlewares/authValidate';
 import ValidateUserUpdate from '../../middlewares/updateUserValidate';
 import ValidateUserDelete from '../../middlewares/deleteUserValidate';
 
-const userRouter = Router();
+const userRouter = express.Router();
 const { validateSignupData } = new ValidateSignup();
 const { checkLoginCredentials } = new ValidateLogin();
 const {
@@ -15,7 +15,7 @@ const {
   retrieveUserProfile,
   updateUserProfile,
   temporaryDeleteAccount,
-} = new UserController();
+} = UserController;
 const { isUserLoggedInAndVerified } = new ValidateAuth();
 const { validateUserUpdateData } = new ValidateUserUpdate();
 const { validateUserDeletion } = new ValidateUserDelete();

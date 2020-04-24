@@ -1,13 +1,20 @@
+/* eslint-disable no-underscore-dangle */
 import { readdirSync } from 'fs';
-import { basename as _basename, join } from 'path';
-import { Sequelize } from 'sequelize';
+import path from 'path';
+import sequelizeObj from 'sequelize';
 import dotenv from 'dotenv';
+import { createRequire } from 'module';
+import { fileURLToPath } from 'url';
 
 dotenv.config();
-
+const { basename: _basename, join } = path;
+const __dirname = path.resolve('src/database/models');
+const __filename = fileURLToPath(import.meta.url);
+const { Sequelize } = sequelizeObj;
+const require = createRequire(import.meta.url);
 const basename = _basename(__filename);
 const env = process.env.NODE_ENV;
-const config = require('../config.js')[env];
+const config = require('../config.cjs')[env];
 
 const db = {};
 
@@ -15,7 +22,7 @@ const sequelize = new Sequelize(config.database, config.username, config.passwor
 
 readdirSync(__dirname)
   .filter((file) => {
-    const isTrue = (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
+    const isTrue = (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-4) === '.cjs');
     return isTrue;
   })
   .forEach((file) => {

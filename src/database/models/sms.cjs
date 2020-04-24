@@ -1,5 +1,5 @@
 
-export default (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const sms = sequelize.define('sms', {
     senderAddress: DataTypes.STRING,
     receiverAddress: DataTypes.STRING,

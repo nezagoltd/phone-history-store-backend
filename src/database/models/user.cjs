@@ -1,5 +1,5 @@
 
-export default (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const user = sequelize.define('user', {
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,

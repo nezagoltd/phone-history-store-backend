@@ -1,4 +1,4 @@
-import { sign, verify } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import _ from 'lodash';
 
@@ -15,7 +15,7 @@ const { JWT_EXPIRES_IN_HRS, JWT_KEY } = process.env;
  */
 export const generateToken = (dataToToken) => {
   const dataToEncrypt = _.omit(dataToToken, 'password');
-  const token = sign(dataToEncrypt, JWT_KEY, { expiresIn: JWT_EXPIRES_IN_HRS });
+  const token = jwt.sign(dataToEncrypt, JWT_KEY, { expiresIn: JWT_EXPIRES_IN_HRS });
   return token;
 };
 
@@ -24,4 +24,4 @@ export const generateToken = (dataToToken) => {
  * @return {string} decodedToken
  * @function
  */
-export const verifyToken = (token) => verify(token, JWT_KEY);
+export const verifyToken = (token) => jwt.verify(token, JWT_KEY);

@@ -1,7 +1,7 @@
 language: node_js
 
 node_js:
-  - 13.13.0
+  - 14.0.0
 
 services:
   - postgresql

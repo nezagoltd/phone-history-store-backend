@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import chai, { expect } from 'chai';
+import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../../app';
 import customMessages from '../../helpers/customMessages';
@@ -8,6 +8,7 @@ import mockData from '../data/mockData.test';
 
 chai.use(chaiHttp);
 
+const { expect } = chai;
 const { badRequest, conflict, created } = statusCodes;
 const {
   phoneNumberAlreadyExists,

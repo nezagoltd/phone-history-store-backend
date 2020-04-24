@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import chai, { expect } from 'chai';
+import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../../app';
 import mockData from '../data/mockData.test';
@@ -8,6 +8,7 @@ import customMessages from '../../helpers/customMessages';
 
 chai.use(chaiHttp);
 
+const { expect } = chai;
 const {
   unAuthorized,
   ok,
