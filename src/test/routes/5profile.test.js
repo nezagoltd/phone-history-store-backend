@@ -13,7 +13,6 @@ const {
   invalidToken,
   updateProfileValidData,
   updateProfileInValidData,
-  tokenOfUserWhoDoesnExist,
 } = mockData.profile;
 const {
   unAuthorized,

@@ -20,7 +20,8 @@ export default class CrudRepository {
      * @description it returns the saved data
      */
   saveAll = async (inputData) => {
-    const acceptedSave = removeUnexpectedInput(this.tableAttributes, inputData);
+    const tableFields = Object.keys(this.model.rawAttributes);
+    const acceptedSave = removeUnexpectedInput(tableFields, inputData);
     const savedData = await this.model.create(acceptedSave);
     return savedData;
   }
@@ -40,6 +41,21 @@ export default class CrudRepository {
   }
 
   /**
+   * @param {object} whereCondition
+   * @returns {object} foundRes
+   * @method
+   * @description it gets whereCondition which should be an object containing the attribute of the
+   * table and its value, example if you want to get by phoneNumber, ypu will pass the
+   * whereCondition as this {phoneNumber:"+250722792371"} then it returns the object containing a
+   * user with that phoneNumber
+   */
+  getAll = async (whereCondition) => {
+    const foundRes = whereCondition ? await this.model.findAndCountAll({ where: whereCondition })
+      : await this.model.findAndCountAll();
+    return foundRes;
+  }
+
+  /**
    * @param {object} dataToUpdate
    * @param {object} whereCondition
    * @returns {object} updatedData
@@ -48,7 +64,8 @@ export default class CrudRepository {
    * updated data
    */
   updateBy = async (dataToUpdate, whereCondition) => {
-    const validDataToUpdate = removeUnexpectedInput(this.tableAttributes, dataToUpdate);
+    const tableFields = Object.keys(this.model.rawAttributes);
+    const validDataToUpdate = removeUnexpectedInput(tableFields, dataToUpdate);
     const updatedData = await this.model.update(validDataToUpdate, {
       where: whereCondition, returning: true,
     });
