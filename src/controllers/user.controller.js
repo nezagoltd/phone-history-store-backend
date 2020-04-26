@@ -36,7 +36,7 @@ export default class UserController extends ResponseHandlers {
     this.res = res;
     req.body.password = hashPassword(req.body.password);
     const { dataValues } = await UserService.saveAll(req.body);
-    this.successResponse(this.res, created, null, generateToken(dataValues), null);
+    this.successResponse(this.res, created, undefined, generateToken(dataValues), undefined);
   }
 
   /**
@@ -49,7 +49,7 @@ export default class UserController extends ResponseHandlers {
   retrieveUser = async (req, res) => {
     this.res = res;
     const { gottenUser } = req;
-    this.successResponse(this.res, ok, null, generateToken(gottenUser), null);
+    this.successResponse(this.res, ok, undefined, generateToken(gottenUser), undefined);
   }
 
   /**
@@ -78,7 +78,7 @@ export default class UserController extends ResponseHandlers {
     }
     const { dataValues } = req.sessionUser;
     retrievedProfile = _.omit(dataValues, 'password');
-    return this.successResponse(this.res, ok, null, null, retrievedProfile);
+    return this.successResponse(this.res, ok, undefined, undefined, retrievedProfile);
   }
 
   /**
@@ -93,7 +93,7 @@ export default class UserController extends ResponseHandlers {
     const dataToUpdate = req.body; // data to submit for update
     const { profileToUpdate } = req; // id of profile to update
     const updatedData = await UserService.updateBy(dataToUpdate, { id: profileToUpdate });
-    this.successResponse(this.res, ok, null, null, updatedData);
+    this.successResponse(this.res, ok, undefined, undefined, updatedData);
   }
 
   /**
@@ -107,6 +107,6 @@ export default class UserController extends ResponseHandlers {
     this.res = res;
     const { accountToDelete } = req;
     await UserService.temporaryDelete({ id: accountToDelete });
-    this.successResponse(this.res, ok, accountDeletedSuccessfulyMsg, null, null);
+    this.successResponse(this.res, ok, accountDeletedSuccessfulyMsg, undefined, undefined);
   }
 }

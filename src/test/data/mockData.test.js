@@ -168,4 +168,23 @@ export default {
       lastName: 'history222',
     },
   },
+  smsData: {
+    saveSmsDraft: {
+      senderAddress: '+111',
+      receiverAddress: '+112',
+      dateTime: new Date(),
+      smsType: 'draft',
+      smsContent: 'hello, this is a draft',
+    },
+    saveSmsSent: {
+      senderAddress: '+111',
+      receiverAddress: '+112',
+      dateTime: new Date(),
+      smsType: 'sent',
+      smsContent: 'hello, this is a sent msg',
+    },
+    updateSmsDraft: {
+      smsContent: 'hello, this is an update of a draft msg',
+    },
+  },
 };

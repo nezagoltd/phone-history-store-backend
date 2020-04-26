@@ -14,5 +14,11 @@ export default (sequelize, DataTypes) => {
     paranoid: true,
     timestamp: true,
   });
+  user.associate = (models) => {
+    user.hasMany(models.sms, {
+      foreignKey: 'storeOwner',
+      onUpdate: 'CASCADE',
+    });
+  };
   return user;
 };

@@ -13,7 +13,6 @@ class UserService extends CrudRepository {
   constructor() {
     super();
     this.model = user;
-    this.tableAttributes = Object.keys(this.model.rawAttributes);
   }
 }
 

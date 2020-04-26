@@ -6,7 +6,20 @@ export default {
       primaryKey: true,
       type: Sequelize.INTEGER,
     },
-    address: {
+    storeOwner: {
+      allowNull: false,
+      type: Sequelize.INTEGER,
+      onUpdate: 'CASCADE',
+      references: {
+        model: 'users',
+        key: 'id',
+      },
+
+    },
+    senderAddress: {
+      type: Sequelize.STRING,
+    },
+    receiverAddress: {
       type: Sequelize.STRING,
     },
     dateTime: {
@@ -24,6 +37,10 @@ export default {
     },
     updatedAt: {
       allowNull: false,
+      type: Sequelize.DATE,
+    },
+    deletedAt: {
+      allowNull: true,
       type: Sequelize.DATE,
     },
   }),

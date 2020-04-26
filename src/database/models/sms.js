@@ -1,6 +1,7 @@
 
 export default (sequelize, DataTypes) => {
   const sms = sequelize.define('sms', {
+    storeOwner: DataTypes.INTEGER,
     senderAddress: DataTypes.STRING,
     receiverAddress: DataTypes.STRING,
     dateTime: DataTypes.DATE,
@@ -11,7 +12,10 @@ export default (sequelize, DataTypes) => {
     timestamp: true,
   });
   sms.associate = (models) => {
-    // associations can be defined here
+    sms.belongsTo(models.user, {
+      foreignKey: 'storeOwner',
+      onUpdate: 'CASCADE',
+    });
   };
   return sms;
 };
