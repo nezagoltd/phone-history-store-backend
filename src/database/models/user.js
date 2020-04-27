@@ -19,6 +19,10 @@ export default (sequelize, DataTypes) => {
       foreignKey: 'storeOwner',
       onUpdate: 'CASCADE',
     });
+    user.hasMany(models.call, {
+      foreignKey: 'storeOwner',
+      onUpdate: 'CASCADE',
+    });
   };
   return user;
 };

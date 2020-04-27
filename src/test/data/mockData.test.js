@@ -187,4 +187,14 @@ export default {
       smsContent: 'hello, this is an update of a draft msg',
     },
   },
+  callData: {
+    newCallData: {
+      callerName: 'Emma',
+      callDuration: 123,
+      callType: 'OUTGOING',
+      callingTime: '2020-10-22',
+      callerPhNumber: '+12345',
+      callReceiverPhNumber: '+12344',
+    },
+  },
 };
