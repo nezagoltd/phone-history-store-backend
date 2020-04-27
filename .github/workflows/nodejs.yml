@@ -1,0 +1,78 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js CI
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  container-job:
+    runs-on: ubuntu-latest
+    container: node:13.13.0-buster
+
+    services:
+      postgres:
+        image: postgres:10.8
+        env:
+          DEV_DB_USERNAME: ${{secrets.DEV_DB_USERNAME}}
+          DEV_DB_PASSWORD: ${{secrets.DEV_DB_PASSWORD}}
+          DEV_DB_NAME: ${{secrets.DEV_DB_NAME}}
+          DEV_DB_HOSTNAME: ${{secrets.DEV_DB_HOSTNAME}}
+          DEV_DB_PORT: ${{secrets.DEV_DB_PORT}}
+          
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Connect to PostgreSQL
+        run: yarn start
+        env:
+          DEV_DB_HOSTNAME: localhost
+          DEV_DB_PORT: 5432
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x, 13.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: yarn
+    - run: yarn test
+      env:
+        CI: true
+        DEV_DB_USERNAME: ${{secrets.DEV_DB_USERNAME}}
+        DEV_DB_PASSWORD: ${{secrets.DEV_DB_PASSWORD}}
+        DEV_DB_NAME: ${{secrets.DEV_DB_NAME}}
+        DEV_DB_HOSTNAME: ${{secrets.DEV_DB_HOSTNAME}}
+        DEV_DB_PORT: ${{secrets.DEV_DB_PORT}}
+        NODE_ENV: ${{secrets.NODE_ENV}}
+        PORT: ${{secrets.PORT}}
+        JWT_EXPIRES_IN_HRS: ${{secrets.JWT_EXPIRES_IN_HRS}}
+        JWT_KEY: ${{secrets.JWT_KEY}}
+        SU_FNAME: ${{secrets.SU_FNAME}}
+        SU_LNAME: ${{secrets.SU_LNAME}}
+        SU_EMAIL: ${{secrets.SU_EMAIL}}
+        SU_AGE: ${{secrets.SU_AGE}}
+        SU_PASSWORD: ${{secrets.SU_PASSWORD}}
+        SU_PHNUMBER: ${{secrets.SU_PHNUMBER}}
