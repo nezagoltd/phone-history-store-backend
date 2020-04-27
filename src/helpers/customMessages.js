@@ -28,4 +28,11 @@ export default {
   smsNotMine: 'You cannot delete sms which is not yours',
   smsDeleted: 'Sms deleted successfully',
   onlySuperUserCanDoThat: 'Sorry!, You are not a super user, only super users can perform that action',
+  callSaved: 'call saved successfully',
+  callRetrieved: 'call retrieved successfully',
+  callIdEmpty: 'Enter the call Id please',
+  callIdMustBeNumber: 'The call Id must be a number, not a text nor special characters',
+  callNotExists: 'That call does not exist',
+  callNotMine: 'You cannot delete call which is not yours',
+  callDeleted: 'Call deleted',
 };

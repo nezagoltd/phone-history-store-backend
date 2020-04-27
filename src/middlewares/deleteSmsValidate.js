@@ -1,76 +1,41 @@
-import statusCodes from '../helpers/statusCodes';
-import customMessages from '../helpers/customMessages';
-import smsAndCallTypes from '../helpers/smsAndCallTypes';
+import ValidateItemDelete from './deleteItemValidate';
 import SmsService from '../services/sms.service';
-import ResponseHandlers from '../helpers/responseHandlers';
-import userRoles from '../helpers/userRoles';
+import customMessages from '../helpers/customMessages';
 
-const { badRequest, notFound, forbidden } = statusCodes;
-const {
-  smsIdEmpty,
-  editDraftSmsOnly,
-  smsIdMustBeNumber,
-  smsNotExists, smsUpdateDataEmpty, smsNotMine,
-} = customMessages;
-const { SUPERUSER } = userRoles;
-
+const { smsNotExists, smsNotMine, smsIdMustBeNumber } = customMessages;
 /**
  * @class
- * @classdesc this class contains methods to validate sms update methods
+ * @classdesc it validate delete sms
  */
-class ValidateSmsDelete extends ResponseHandlers {
+class ValidateSmsDelete extends ValidateItemDelete {
   /**
      * @constructor
      */
   constructor() {
     super();
+    this.itemNotExistsErrMsg = smsNotExists;
+    this.itemIdMustBeNumber = smsIdMustBeNumber;
+    this.itemNotMine = smsNotMine;
+    this.req = {};
     this.res = {};
+    this.next = {};
+    this.service = SmsService;
   }
-
-    /**
-     * @param {object} req
-     * @param {object} next
-     * @returns {object} next
-     * @method
-     * @description it returns next or error response if the params are okay
-     */
-    smsExists = async (req, next) => {
-      const smsToDelete = parseInt(req.params.smsId, 10);
-      const smsInDb = await SmsService.getBy({ id: smsToDelete });
-      if (smsInDb) {
-        const { dataValues } = smsInDb;
-        if (req.sessionUser.userRole !== SUPERUSER) {
-          if (dataValues.storeOwner === req.sessionUser.id) {
-            req.smsToDelete = smsToDelete;
-            next();
-          } else {
-            this.errorResponse(this.res, forbidden, smsNotMine);
-          }
-        } else {
-          req.smsToDelete = smsToDelete;
-          next();
-        }
-      } else {
-        this.errorResponse(this.res, notFound, smsNotExists);
-      }
-    }
 
     /**
      * @param {object} req
      * @param {object} res
      * @param {object} next
-     * @returns {object} next
      * @method
-     * @description it evaluates the delete sms params
+     * @returns {object} next
+     * @description it validate the sms deletion id
      */
     validateSmsDeleteData = async (req, res, next) => {
+      this.req = req;
       this.res = res;
-      const { smsId } = req.params;
-      if (!isNaN(smsId)) {
-        this.smsExists(req, next);
-      } else {
-        this.errorResponse(this.res, badRequest, smsIdMustBeNumber);
-      }
+      this.next = next;
+      const { smsId } = this.req.params;
+      await this.validateItemDeleteData(smsId);
     }
 }
 

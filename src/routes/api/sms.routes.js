@@ -3,12 +3,12 @@ import SmsController from '../../controllers/sms.controller';
 import ValidateAuth from '../../middlewares/authValidate';
 import ValidateSmsUpdate from '../../middlewares/updateSmsValidate';
 import ValidateSmsDelete from '../../middlewares/deleteSmsValidate';
-import ValidateAllSmsRetrieve from '../../middlewares/retrieveAllSmsValidate';
+import ValidateAllLogsRetrieve from '../../middlewares/retrieveAllLogsValidate';
 
 const { isUserLoggedInAndVerified } = new ValidateAuth();
 const { validateSmsUpdateData } = new ValidateSmsUpdate();
 const { validateSmsDeleteData } = new ValidateSmsDelete();
-const { validateAllSmsRetrieve } = new ValidateAllSmsRetrieve();
+const { validateAllLogsRetrieve } = new ValidateAllLogsRetrieve();
 
 const smsRouter = Router();
 const {
@@ -21,7 +21,7 @@ const {
 
 smsRouter.post('/save-sms', isUserLoggedInAndVerified, saveNewSms);
 smsRouter.get('/read-my-sms', isUserLoggedInAndVerified, retrieveMySms);
-smsRouter.get('/read-all-sms', isUserLoggedInAndVerified, validateAllSmsRetrieve, retrieveAllSms);
+smsRouter.get('/read-all-sms', isUserLoggedInAndVerified, validateAllLogsRetrieve, retrieveAllSms);
 smsRouter.patch('/edit-sms/:smsId', isUserLoggedInAndVerified, validateSmsUpdateData, updateSms);
 smsRouter.delete('/delete-sms/:smsId', isUserLoggedInAndVerified, validateSmsDeleteData, temporaryDeleteSms);
 

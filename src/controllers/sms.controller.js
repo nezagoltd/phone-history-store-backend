@@ -89,7 +89,7 @@ class SmsController extends ResponseHandlers {
    */
   temporaryDeleteSms = async (req, res) => {
     this.res = res;
-    await SmsService.temporaryDelete({ id: req.smsToDelete });
+    await SmsService.temporaryDelete({ id: req.itemToDelete });
     this.successResponse(this.res, ok, smsDeleted, undefined, undefined);
   }
 }

@@ -11,7 +11,7 @@ const { onlySuperUserCanDoThat } = customMessages;
  * @class
  * @classdesc it evaluates who is retrieving all sms
  */
-class ValidateAllSmsRetrieve extends ResponseHandlers {
+class ValidateAllLogsRetrieve extends ResponseHandlers {
 /**
  * @constructor
  */
@@ -28,7 +28,7 @@ class ValidateAllSmsRetrieve extends ResponseHandlers {
      * @method
      * @description it validates the user requesting all sms, only super user can read all msg
      */
-    validateAllSmsRetrieve = async (req, res, next) => {
+    validateAllLogsRetrieve = async (req, res, next) => {
       this.res = res;
       const { sessionUser } = req;
       if (sessionUser.userRole === SUPERUSER) {
@@ -39,4 +39,4 @@ class ValidateAllSmsRetrieve extends ResponseHandlers {
     }
 }
 
-export default ValidateAllSmsRetrieve;
+export default ValidateAllLogsRetrieve;
