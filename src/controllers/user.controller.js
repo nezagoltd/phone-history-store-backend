@@ -12,7 +12,7 @@ const {
 const {
   userNotExistErrorMsg,
   requestProfileUseNumberErrMsg,
-  accountDeletedSuccessfulyMsg,
+  accountDeletedSuccessfulyMsg, userFound, userNotFound,
 } = customMessages;
 
 /**
@@ -108,5 +108,21 @@ export default class UserController extends ResponseHandlers {
     const { accountToDelete } = req;
     await UserService.temporaryDelete({ id: accountToDelete });
     this.successResponse(this.res, ok, accountDeletedSuccessfulyMsg, undefined, undefined);
+  }
+
+  /**
+   * @param {object}req
+   * @param {object}res
+   * @returns {object}next
+   */
+  checkUserExists = async (req, res) => {
+    this.res = res;
+    const { phoneNumber } = req.params;
+    const foundUser = await UserService.getBy({ phoneNumber });
+    if (foundUser) {
+      this.successResponse(this.res, ok, userFound, undefined);
+    } else {
+      this.errorResponse(this.res, notFound, userNotFound);
+    }
   }
 }

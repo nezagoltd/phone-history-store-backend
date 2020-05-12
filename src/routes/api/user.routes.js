@@ -15,6 +15,7 @@ const {
   retrieveUserProfile,
   updateUserProfile,
   temporaryDeleteAccount,
+  checkUserExists,
 } = new UserController();
 const { isUserLoggedInAndVerified } = new ValidateAuth();
 const { validateUserUpdateData } = new ValidateUserUpdate();
@@ -23,6 +24,7 @@ const { validateUserDeletion } = new ValidateUserDelete();
 userRouter.post('/signup', validateSignupData, saveNewUser);
 userRouter.post('/login', checkLoginCredentials, retrieveUser);
 userRouter.get('/profile/:requestedProfile', isUserLoggedInAndVerified, retrieveUserProfile);
+userRouter.get('/check-user/:phoneNumber', checkUserExists);
 userRouter.get('/profile', isUserLoggedInAndVerified, retrieveUserProfile);
 userRouter.patch('/profile', isUserLoggedInAndVerified, validateUserUpdateData, updateUserProfile);
 userRouter.patch('/profile/:profileToUpdate', isUserLoggedInAndVerified, validateUserUpdateData, updateUserProfile);
