@@ -52,6 +52,7 @@ Here Phone History Store helps in that situation, you can store your sms, your c
 | /calls/save-call | POST | 201 CREATED | Makes a POST request to save a new call in database |
 | /calls/read-my-calls | GET | 200 OK | Makes a GET request to retrieve all of my calls from database |
 | /calls/delete-call/:callId | DELETE | 200 OK | Makes a DELETE request to delete a specific call from database |
+| /users/check-user/:phoneNumber | GET | 200 OK | Makes a GET request to check if a user exists from database |
 
 # Tools
 
