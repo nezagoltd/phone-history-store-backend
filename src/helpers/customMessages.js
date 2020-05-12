@@ -35,4 +35,6 @@ export default {
   callNotExists: 'That call does not exist',
   callNotMine: 'You cannot delete call which is not yours',
   callDeleted: 'Call deleted',
+  userFound: 'This user exists',
+  userNotFound: 'This user does not exist',
 };
