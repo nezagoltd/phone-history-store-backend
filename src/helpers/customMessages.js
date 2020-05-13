@@ -37,4 +37,5 @@ export default {
   callDeleted: 'Call deleted',
   userFound: 'This user exists',
   userNotFound: 'This user does not exist',
+  resourceNotFound: 'The page or resource you want to access does not exist',
 };
