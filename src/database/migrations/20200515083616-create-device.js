@@ -1,16 +1,18 @@
-
-module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('deviceInfos', {
+export default {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('devices', {
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: Sequelize.INTEGER,
     },
-    userId: {
+    deviceOwner: {
       type: Sequelize.INTEGER,
     },
-    deviceId: {
+    deviceUniqueId: {
+      type: Sequelize.STRING,
+    },
+    deviceName: {
       type: Sequelize.STRING,
     },
     createdAt: {
@@ -21,6 +23,10 @@ module.exports = {
       allowNull: false,
       type: Sequelize.DATE,
     },
+    deletedAt: {
+      allowNull: true,
+      type: Sequelize.DATE,
+    },
   }),
-  down: (queryInterface, Sequelize) => queryInterface.dropTable('deviceInfos'),
+  down: (queryInterface, Sequelize) => queryInterface.dropTable('devices'),
 };
