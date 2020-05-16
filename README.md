@@ -53,7 +53,8 @@ Here Phone History Store helps in that situation, you can store your sms, your c
 | /calls/read-my-calls | GET | 200 OK | Makes a GET request to retrieve all of my calls from database |
 | /calls/delete-call/:callId | DELETE | 200 OK | Makes a DELETE request to delete a specific call from database |
 | /users/check-user/:phoneNumber | GET | 200 OK | Makes a GET request to check if a user exists from database |
-
+| /read-calls-by-device-source/:deviceSource | GET | 200 OK | Makes a GET request to retrieve calls from a specific device by providing device source id |
+| /read-sms-by-device-source/:deviceSource | GET | 200 OK | Makes a GET request to retrieve sms from a specific device by providing device source id |
 # Tools
 
 Tools used for development of these APIs are;
