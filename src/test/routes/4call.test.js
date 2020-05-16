@@ -28,7 +28,7 @@ describe('Call tets', () => {
         done();
       });
   });
-  it('will create read all my call logs', (done) => {
+  it('will read all my call logs', (done) => {
     chai.request(server)
       .get('/api/calls/read-my-calls')
       .set('Authorization', userToken[0])

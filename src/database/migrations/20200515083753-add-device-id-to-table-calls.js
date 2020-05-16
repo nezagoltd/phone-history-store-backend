@@ -2,7 +2,7 @@ export default {
   up: (queryInterface, Sequelize) => Promise.all([
     queryInterface.addColumn(
       'calls',
-      'deviceId',
+      'deviceSource',
       {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -16,6 +16,6 @@ export default {
   ]),
 
   down: (queryInterface, Sequelize) => Promise.all([
-    queryInterface.removeColumn('calls', 'deviceId'),
+    queryInterface.removeColumn('calls', 'deviceSource'),
   ]),
 };

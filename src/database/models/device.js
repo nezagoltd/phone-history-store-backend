@@ -13,11 +13,11 @@ export default (sequelize, DataTypes) => {
       onUpdate: 'CASCADE',
     });
     device.hasMany(models.call, {
-      foreignKey: 'deviceId',
+      foreignKey: 'deviceSource',
       onUpdate: 'CASCADE',
     });
     device.hasMany(models.sms, {
-      foreignKey: 'deviceId',
+      foreignKey: 'deviceSource',
       onUpdate: 'CASCADE',
     });
   };

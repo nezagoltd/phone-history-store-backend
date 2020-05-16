@@ -2,7 +2,7 @@
 export default (sequelize, DataTypes) => {
   const sms = sequelize.define('sms', {
     storeOwner: DataTypes.INTEGER,
-    deviceId: DataTypes.INTEGER,
+    deviceSource: DataTypes.INTEGER,
     senderAddress: DataTypes.STRING,
     receiverAddress: DataTypes.STRING,
     dateTime: DataTypes.DATE,
@@ -18,7 +18,7 @@ export default (sequelize, DataTypes) => {
       onUpdate: 'CASCADE',
     });
     sms.belongsTo(models.device, {
-      foreignKey: 'deviceId',
+      foreignKey: 'deviceSource',
       onUpdate: 'CASCADE',
     });
   };

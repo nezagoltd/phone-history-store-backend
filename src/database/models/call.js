@@ -2,7 +2,7 @@
 export default (sequelize, DataTypes) => {
   const call = sequelize.define('call', {
     storeOwner: DataTypes.INTEGER,
-    deviceId: DataTypes.INTEGER,
+    deviceSource: DataTypes.INTEGER,
     callerName: DataTypes.STRING,
     callDuration: DataTypes.INTEGER,
     callType: DataTypes.STRING,
@@ -19,7 +19,7 @@ export default (sequelize, DataTypes) => {
       onUpdate: 'CASCADE',
     });
     call.belongsTo(models.device, {
-      foreignKey: 'deviceId',
+      foreignKey: 'deviceSource',
       onUpdate: 'CASCADE',
     });
   };
