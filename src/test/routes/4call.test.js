@@ -28,9 +28,24 @@ describe('Call tets', () => {
         done();
       });
   });
-  it('will create read all my call logs', (done) => {
+  it('will read all my call logs', (done) => {
     chai.request(server)
       .get('/api/calls/read-my-calls')
+      .set('Authorization', userToken[0])
+      .end((err, res) => {
+        if (err) done(err);
+        expect(res).to.have.status(ok);
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('message').to.be.a('string').to.equal(callRetrieved);
+        expect(res.body).to.have.property('data').to.be.an('object');
+        expect(res.body.data).to.have.property('count').to.be.a('number');
+        expect(res.body.data).to.have.property('rows').to.be.an('array');
+        done();
+      });
+  });
+  it('will read all call logs from a specific device', (done) => {
+    chai.request(server)
+      .get('/api/calls/read-calls-by-device-source/3')
       .set('Authorization', userToken[0])
       .end((err, res) => {
         if (err) done(err);

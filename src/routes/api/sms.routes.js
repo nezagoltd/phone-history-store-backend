@@ -14,6 +14,7 @@ const smsRouter = Router();
 const {
   saveNewSms,
   retrieveMySms,
+  retrieveSmsByDeviceSource,
   retrieveAllSms,
   updateSms,
   temporaryDeleteSms,
@@ -21,6 +22,7 @@ const {
 
 smsRouter.post('/save-sms', isUserLoggedInAndVerified, saveNewSms);
 smsRouter.get('/read-my-sms', isUserLoggedInAndVerified, retrieveMySms);
+smsRouter.get('/read-sms-by-device-source/:deviceSource', isUserLoggedInAndVerified, retrieveSmsByDeviceSource);
 smsRouter.get('/read-all-sms', isUserLoggedInAndVerified, validateAllLogsRetrieve, retrieveAllSms);
 smsRouter.patch('/edit-sms/:smsId', isUserLoggedInAndVerified, validateSmsUpdateData, updateSms);
 smsRouter.delete('/delete-sms/:smsId', isUserLoggedInAndVerified, validateSmsDeleteData, temporaryDeleteSms);

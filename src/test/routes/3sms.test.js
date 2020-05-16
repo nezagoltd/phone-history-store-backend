@@ -98,6 +98,21 @@ describe('Sms sync tests', () => {
         done();
       });
   });
+  it('will retrieve all saved sms from the db by device source, expect to get 200', (done) => {
+    chai.request(server)
+      .get('/api/sms/read-sms-by-device-source/3')
+      .set('Authorization', userToken[1])
+      .end((err, res) => {
+        if (err) done(err);
+        expect(res).to.have.status(ok);
+        expect(res.body).to.be.an('object');
+        expect(res.body).to.have.property('message').to.be.a('string').to.equal(smsRetrieved);
+        expect(res.body).to.have.property('data').to.be.a('object');
+        expect(res.body.data).to.have.property('count').to.be.an('number');
+        expect(res.body.data).to.have.property('rows').to.be.an('array');
+        done();
+      });
+  });
   it('will retrieve all saved sms from the db, expect to get 200', (done) => {
     chai.request(server)
       .get('/api/sms/read-all-sms')

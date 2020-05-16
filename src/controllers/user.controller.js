@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import UserService from '../services/user.service';
+import DeviceService from '../services/device.service';
 import statusCodes from '../helpers/statusCodes';
 import ResponseHandlers from '../helpers/responseHandlers';
 import { generateToken } from '../helpers/tokenHandler';
@@ -36,6 +37,9 @@ export default class UserController extends ResponseHandlers {
     this.res = res;
     req.body.password = hashPassword(req.body.password);
     const { dataValues } = await UserService.saveAll(req.body);
+    const deviceOwner = dataValues.id;
+    const { deviceUniqueId, deviceName } = req.body;
+    await DeviceService.saveAll({ deviceOwner, deviceName, deviceUniqueId });
     this.successResponse(this.res, created, undefined, generateToken(dataValues), undefined);
   }
 

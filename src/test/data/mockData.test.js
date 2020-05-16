@@ -13,6 +13,8 @@ export default {
       phoneNumber: '+123456789',
       password: 'Phonehistory1.',
       age: 25,
+      deviceUniqueId: 'device-unique-id-1',
+      deviceName: 'descholar-device',
     },
     signupThirdPartyData: {
       firstName: 'Phone',
@@ -21,6 +23,8 @@ export default {
       phoneNumber: '+123456780',
       password: 'Phonehistory1.',
       age: 25,
+      deviceUniqueId: 'device-unique-id-2',
+      deviceName: 'emma-device',
     },
     signupWithSomeOtherUnnecessaryData: {
       firstName: 'PhoneHistory',
@@ -32,6 +36,8 @@ export default {
       phoneNumber: '+122345678',
       password: 'Phonehistory1.',
       age: 25,
+      deviceUniqueId: 'device-unique-id-3',
+      deviceName: 'genius-device',
     },
     signupDuplicateData: {
       firstName: 'PhoneHistory',
@@ -40,6 +46,8 @@ export default {
       phoneNumber: '+123456789',
       password: 'Phonehistory1.',
       age: 25,
+      deviceUniqueId: 'device-unique-id-4',
+      deviceName: 'premier-device',
     },
     signupFirstNameBadFormatData: {
       firstName: 'PhoneHistory132w',
@@ -48,6 +56,8 @@ export default {
       phoneNumber: '+112345678',
       password: 'Phonehistory1.',
       age: 25,
+      deviceUniqueId: 'device-unique-id-5',
+      deviceName: 'studio-device',
     },
     signupLastNameBadFormatData: {
       firstName: 'PhoneHistory1',
@@ -56,6 +66,8 @@ export default {
       phoneNumber: '+112345678',
       password: 'Phonehistory1.',
       age: 25,
+      deviceUniqueId: 'device-unique-id-6',
+      deviceName: 'job-device',
     },
     signupEmailFormatData: {
       firstName: 'PhoneHistory',
@@ -64,6 +76,8 @@ export default {
       phoneNumber: '+112345678',
       password: 'Phonehistory1.',
       age: 25,
+      deviceUniqueId: 'device-unique-id-7',
+      deviceName: 'way-device',
     },
     signupPasswordBadFormatData: {
       firstName: 'PhoneHistory',
@@ -72,6 +86,8 @@ export default {
       phoneNumber: '+112345678',
       password: 'Phonehistory',
       age: 25,
+      deviceUniqueId: 'device-unique-id-8',
+      deviceName: 'rihanna-device',
     },
     signupAgeEmpty: {
       firstName: 'PhoneHistory',
@@ -79,6 +95,8 @@ export default {
       email: 'phonehistorystore@nezastore.neza',
       phoneNumber: '+112345678',
       password: 'Phonehistory1.',
+      deviceUniqueId: 'device-unique-id-9',
+      deviceName: 'beyonce-device',
     },
     signupPhoneNumberEmpty: {
       firstName: 'PhoneHistory',
@@ -86,6 +104,8 @@ export default {
       email: 'phonehistorystore@nezastore.neza',
       password: 'Phonehistory1.',
       age: 24,
+      deviceUniqueId: 'device-unique-id-10',
+      deviceName: 'knowless-device',
     },
     signupFirstNameEmpty: {
       lastName: 'Store',
@@ -93,6 +113,8 @@ export default {
       password: 'Phonehistory1.',
       phoneNumber: '+12345675',
       age: 24,
+      deviceUniqueId: 'device-unique-id-11',
+      deviceName: 'djedju-device',
     },
     signupLastNameEmpty: {
       firstName: 'Store',
@@ -100,6 +122,8 @@ export default {
       password: 'Phonehistory1.',
       phoneNumber: '+12345566',
       age: 24,
+      deviceUniqueId: 'device-unique-id-12',
+      deviceName: 'island-device',
     },
     signupEmailEmpty: {
       lastName: 'Phone',
@@ -107,6 +131,8 @@ export default {
       password: 'Phonehistory1.',
       phoneNumber: '+212234445',
       age: 24,
+      deviceUniqueId: 'device-unique-id-13',
+      deviceName: 'joy-device',
     },
     signupPasswordEmpty: {
       lastName: 'Phone',
@@ -114,16 +140,22 @@ export default {
       email: 'phonehistorystore@nezastore.neza',
       phoneNumber: '+1234567',
       age: 24,
+      deviceUniqueId: 'device-unique-id-14',
+      deviceName: 'cool-device',
     },
     signupFirstNameAndLastNameEmpty: {
       email: 'phonehistorystore@nezastore.neza',
       password: 'Phone1.',
       age: 24,
+      deviceUniqueId: 'device-unique-id-15',
+      deviceName: 'man-device',
     },
     signupPasswordAndEmailEmpty: {
       lastName: 'Phone',
       firstName: 'Store',
       Age: 24,
+      deviceUniqueId: 'device-unique-id-16',
+      deviceName: 'lwanga-device',
     },
   },
   login: {
@@ -175,6 +207,7 @@ export default {
       dateTime: new Date(),
       smsType: 'draft',
       smsContent: 'hello, this is a draft',
+      deviceSource: 1,
     },
     saveSmsSent: {
       senderAddress: '+111',
@@ -182,6 +215,7 @@ export default {
       dateTime: new Date(),
       smsType: 'sent',
       smsContent: 'hello, this is a sent msg',
+      deviceSource: 2,
     },
     updateSmsDraft: {
       smsContent: 'hello, this is an update of a draft msg',
@@ -195,6 +229,7 @@ export default {
       callingTime: '2020-10-22',
       callerPhNumber: '+12345',
       callReceiverPhNumber: '+12344',
+      deviceSource: 3,
     },
   },
 };
