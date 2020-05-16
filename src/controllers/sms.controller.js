@@ -60,6 +60,20 @@ class SmsController extends ResponseHandlers {
      * @returns {object} response to user
      * @description it sends an authentication token to user if they are authenticated
      */
+    retrieveSmsByDeviceSource = async (req, res) => {
+      this.res = res;
+      const { deviceSource } = req.params;
+      const gottenSms = await SmsService.getAll({ deviceSource });
+      this.successResponse(this.res, ok, smsRetrieved, undefined, gottenSms);
+    }
+
+  /**
+     * @param {object} req
+     * @param {object} res
+     * @method
+     * @returns {object} response to user
+     * @description it sends an authentication token to user if they are authenticated
+     */
   retrieveAllSms = async (req, res) => {
     this.res = res;
     const gottenSms = await SmsService.getAll();
