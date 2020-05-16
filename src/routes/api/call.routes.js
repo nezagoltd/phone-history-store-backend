@@ -13,11 +13,13 @@ const {
   saveNewCall,
   retrieveMyCall,
   retrieveAllCall,
+  retrieveCallsByDeviceSource,
   temporaryDeleteCall,
 } = CallController;
 
 callRouter.post('/save-call', isUserLoggedInAndVerified, saveNewCall);
 callRouter.get('/read-my-calls', isUserLoggedInAndVerified, retrieveMyCall);
+callRouter.get('/read-calls-by-device-source/:deviceSource', isUserLoggedInAndVerified, retrieveCallsByDeviceSource);
 callRouter.get('/read-all-calls', isUserLoggedInAndVerified, validateAllLogsRetrieve, retrieveAllCall);
 callRouter.delete('/delete-call/:callId', isUserLoggedInAndVerified, validateCallDeleteData, temporaryDeleteCall);
 

@@ -48,6 +48,21 @@ class CallController extends ResponseHandlers {
     this.successResponse(this.res, ok, callRetrieved, undefined, gottenCall);
   }
 
+
+    /**
+     * @param {object} req
+     * @param {object} res
+     * @method
+     * @returns {object} response to user
+     * @description it sends the retrieved call to user if they are authenticated
+     */
+    retrieveCallsByDeviceSource = async (req, res) => {
+      this.res = res;
+      const { deviceSource } = req.params;
+      const gottenCall = await CallService.getAll({ deviceSource });
+      this.successResponse(this.res, ok, callRetrieved, undefined, gottenCall);
+    }
+
   /**
      * @param {object} req
      * @param {object} res
