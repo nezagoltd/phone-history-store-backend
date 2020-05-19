@@ -1,7 +1,7 @@
 import CrudRepository from '../repository/crudRepository';
 import models from '../database/models';
 
-const { device } = models;
+const { device, call, sms } = models;
 
 /**
  * @class
@@ -14,6 +14,7 @@ class DeviceService extends CrudRepository {
   constructor() {
     super();
     this.model = device;
+    this.associateTable = [call, sms];
   }
 }
 

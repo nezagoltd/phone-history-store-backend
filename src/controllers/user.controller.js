@@ -53,7 +53,8 @@ export default class UserController extends ResponseHandlers {
   retrieveUser = async (req, res) => {
     this.res = res;
     const { gottenUser } = req;
-    this.successResponse(this.res, ok, undefined, generateToken(gottenUser), undefined);
+    const userToSend = _.omit(gottenUser, 'devices', 'deletedAt', 'createdAt', 'updatedAt');
+    this.successResponse(this.res, ok, undefined, generateToken(userToSend), undefined);
   }
 
   /**
@@ -72,7 +73,7 @@ export default class UserController extends ResponseHandlers {
         const userFromDb = await UserService.getBy({ id: parseInt(requestedProfile, 10) });
         if (userFromDb) {
           const { dataValues } = userFromDb;
-          retrievedProfile = _.omit(dataValues, 'password');
+          retrievedProfile = _.omit(dataValues, 'password', 'deletedAt');
         } else {
           return this.errorResponse(this.res, notFound, userNotExistErrorMsg);
         }

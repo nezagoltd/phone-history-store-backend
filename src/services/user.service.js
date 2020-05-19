@@ -1,7 +1,7 @@
 import CrudRepository from '../repository/crudRepository';
 import models from '../database/models';
 
-const { user } = models;
+const { user, device } = models;
 /**
  * @description this class user service contains all methods regarding creating user
  * updating user, reading user and deleting a user
@@ -13,6 +13,7 @@ class UserService extends CrudRepository {
   constructor() {
     super();
     this.model = user;
+    this.associateTable = [device];
   }
 }
 

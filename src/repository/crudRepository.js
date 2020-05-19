@@ -12,6 +12,7 @@ export default class CrudRepository {
      */
   constructor() {
     this.model = {};
+    this.associateTable = [];
   }
 
   /**
@@ -36,7 +37,8 @@ export default class CrudRepository {
    * user with that phoneNumber
    */
   getBy = async (whereCondition) => {
-    const foundRes = await this.model.findOne({ where: whereCondition });
+    const inclusion = this.associateTable.map((table => ({ model: table })));
+    const foundRes = await this.model.findOne({ where: whereCondition, include: inclusion });
     return foundRes;
   }
 
@@ -50,8 +52,10 @@ export default class CrudRepository {
    * user with that phoneNumber
    */
   getAll = async (whereCondition) => {
-    const foundRes = whereCondition ? await this.model.findAndCountAll({ where: whereCondition })
-      : await this.model.findAndCountAll();
+    const inclusion = this.associateTable.map((table => ({ model: table })));
+    const foundRes = whereCondition
+      ? await this.model.findAndCountAll({ where: whereCondition, include: inclusion })
+      : await this.model.findAndCountAll({ include: inclusion });
     return foundRes;
   }
 
