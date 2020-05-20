@@ -23,6 +23,10 @@ export default (sequelize, DataTypes) => {
       foreignKey: 'storeOwner',
       onUpdate: 'CASCADE',
     });
+    user.hasMany(models.device, {
+      foreignKey: 'deviceOwner',
+      onUpdate: 'CASCADE',
+    });
   };
   return user;
 };
