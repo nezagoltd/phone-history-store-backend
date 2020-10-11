@@ -17,6 +17,8 @@ server.use(express.json());
 server.use(morgan('combined'));
 server.use(allRoutes);
 
+server.use('/public/api-docs', serve, setup(swaggerSpecs));
+
 server.use((req, res, next) => {
   const resHandler = new ResponseHandlers();
   resHandler.res = res;
