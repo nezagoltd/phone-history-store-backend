@@ -5,6 +5,7 @@ import allRoutes from './routes/index';
 import statusCodes from './helpers/statusCodes';
 import customMessages from './helpers/customMessages';
 import ResponseHandlers from './helpers/responseHandlers';
+import { serve, setup } from 'swagger-ui-express';
 
 dotenv.config();
 
