@@ -15,7 +15,8 @@
     "pretest": "yarn run drop-db && yarn run create-db && yarn run migrations && yarn run seed",
     "test": "nyc mocha --require @babel/register ./src/test/**/*.js --timeout 4000 --exit",
     "posttest": "yarn run undo",
-    "coverage": "nyc report --reporter=lcov --reporter=text-lcov | coveralls && codeclimate-test-reporter < ./coverage/lcov.info"
+    "coverage": "nyc report --reporter=lcov --reporter=text-lcov | coveralls && codeclimate-test-reporter < ./coverage/lcov.info",
+    "eslint-f": "npx eslint . --fix"
   },
   "repository": {
     "type": "git",
