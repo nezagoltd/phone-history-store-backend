@@ -1,0 +1,63 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Phone History Store",
+      "description": "It helps syncing the phone logs",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "https://phone-history-store-backend.herokuapp.com",
+    "basePath": "/api",
+    "schemes": [
+      "https"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "/auth/signup": {
+        "post": {
+          "summary": "Create an account",
+          "tags": [
+            "Sign up"
+          ],
+          "description": "User sign up endpoint",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "User information",
+              "in": "body",
+              "description": "User information required for sign up",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/signup"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Created",
+              "schema": {
+                "$ref": "#/responses/signupSuccess"
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "schema": {
+                "$ref": "#/responses/signupFail"
+                }
+                }
+            }
+            }
+        }
+    }
+}
+  

@@ -15,7 +15,8 @@
     "pretest": "yarn run drop-db && yarn run create-db && yarn run migrations && yarn run seed",
     "test": "nyc mocha --require @babel/register ./src/test/**/*.js --timeout 4000 --exit",
     "posttest": "yarn run undo",
-    "coverage": "nyc report --reporter=lcov --reporter=text-lcov | coveralls && codeclimate-test-reporter < ./coverage/lcov.info"
+    "coverage": "nyc report --reporter=lcov --reporter=text-lcov | coveralls && codeclimate-test-reporter < ./coverage/lcov.info",
+    "eslint-f": "npx eslint . --fix"
   },
   "repository": {
     "type": "git",
@@ -67,6 +68,7 @@
     "pg": "^8.2.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.9",
-    "sequelize-cli": "^5.5.1"
+    "sequelize-cli": "^5.5.1",
+    "swagger-ui-express": "^4.1.4"
   }
 }
